@@ -33,8 +33,8 @@ Import Bootstrap styles in `app/assets/stylesheets/application.scss`:
 
 ```scss
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@use "bootstrap-sprockets";
+@use "bootstrap";
 ```
 
 `bootstrap-sprockets` must be imported before `bootstrap` for the icon fonts to work.
@@ -46,7 +46,7 @@ it may come with a `.css` file instead. If this file exists, it will be served i
 $ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
 ```
 
-Then, remove all the `*= require_self` and `*= require_tree .` statements from the sass file. Instead, use `@import` to import Sass files.
+Then, remove all the `*= require_self` and `*= require_tree .` statements from the sass file. Instead, use `@use` to import Sass files.
 
 Do not use `*= require` in Sass or your other stylesheets will not be [able to access][antirequire] the Bootstrap mixins or variables.
 
@@ -89,12 +89,12 @@ config.assets.precompile << %r(bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:
 ::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
 ```
 
-Replace Bootstrap `@import` statements in `application.scss` with:
+Replace Bootstrap `@use` statements in `application.scss` with:
 
 ```scss
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
-@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
-@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@use "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@use "bootstrap-sass/assets/stylesheets/bootstrap";
 ```
 
 Replace Bootstrap `require` directive in `application.js` with:
@@ -132,8 +132,8 @@ In `application.css.ejs.scss` (NB **.css.ejs.scss**):
 
 ```scss
 // Import mincer asset paths helper integration
-@import "bootstrap-mincer";
-@import "bootstrap";
+@use "bootstrap-mincer";
+@use "bootstrap";
 ```
 
 In `application.js`:
@@ -159,10 +159,10 @@ By default all of Bootstrap is imported.
 You can also import components explicitly. To start with a full list of modules copy
 [`_bootstrap.scss`](assets/stylesheets/_bootstrap.scss) file into your assets as `_bootstrap-custom.scss`.
 Then comment out components you do not want from `_bootstrap-custom`.
-In the application Sass file, replace `@import 'bootstrap'` with:
+In the application Sass file, replace `@use 'bootstrap'` with:
 
 ```scss
-@import 'bootstrap-custom';
+@use 'bootstrap-custom';
 ```
 
 ### Sass: Number Precision
@@ -232,8 +232,8 @@ The fonts are referenced as:
 When using bootstrap-sass with Compass, Sprockets, or Mincer, you **must** import the relevant path helpers before Bootstrap itself, for example:
 
 ```scss
-@import "bootstrap-compass";
-@import "bootstrap";
+@use "bootstrap-compass";
+@use "bootstrap";
 ```
 
 ## Usage
@@ -243,23 +243,23 @@ When using bootstrap-sass with Compass, Sprockets, or Mincer, you **must** impor
 Import Bootstrap into a Sass file (for example, `application.scss`) to get all of Bootstrap's styles, mixins and variables!
 
 ```scss
-@import "bootstrap";
+@use "bootstrap";
 ```
 
 You can also include optional Bootstrap theme:
 
 ```scss
-@import "bootstrap/theme";
+@use "bootstrap/theme";
 ```
 
-The full list of Bootstrap variables can be found [here](https://getbootstrap.com/customize/#less-variables). You can override these by simply redefining the variable before the `@import` directive, e.g.:
+The full list of Bootstrap variables can be found [here](https://getbootstrap.com/customize/#less-variables). You can override these by simply redefining the variable before the `@use` directive, e.g.:
 
 ```scss
 $navbar-default-bg: #312312;
 $light-orange: #ff8c00;
 $navbar-default-color: $light-orange;
 
-@import "bootstrap";
+@use "bootstrap";
 ```
 
 ### Eyeglass
@@ -267,15 +267,15 @@ $navbar-default-color: $light-orange;
 Bootstrap is available as an [Eyeglass](https://github.com/sass-eyeglass/eyeglass) module. After installing Bootstrap via NPM you can import the Bootstrap library via:
 
 ```scss
-@import "bootstrap-sass/bootstrap"
+@use "bootstrap-sass/bootstrap"
 ```
 
 or import only the parts of Bootstrap you need:
 
 ```scss
-@import "bootstrap-sass/bootstrap/variables";
-@import "bootstrap-sass/bootstrap/mixins";
-@import "bootstrap-sass/bootstrap/carousel";
+@use "bootstrap-sass/bootstrap/variables";
+@use "bootstrap-sass/bootstrap/mixins";
+@use "bootstrap-sass/bootstrap/carousel";
 ```
 
 ## Version
